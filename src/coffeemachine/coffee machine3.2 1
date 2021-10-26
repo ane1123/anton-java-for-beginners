@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+
+public class TicTacToe {
+
+
+    public static void main(String[] args) {
+
+        Scanner in = new Scanner(System.in);
+        int m = 0;
+
+
+       System.out.println("Write how many ml of water the coffee machine has: ");
+       int iw = in.nextInt();
+       int iw1 = iw / 200;
+       System.out.println("Write how many ml of milk the coffee machine has: ");
+       int im = in.nextInt();
+        int im1 = im / 50;
+       System.out.println("Write how many grams of coffee beans the coffee machine has: ");
+       int ic = in.nextInt();
+       int ic1 = ic / 15;
+
+
+       if (iw1 < im1){
+           if (iw1 < ic1){
+               m = iw1;
+           }
+       } if (im1 < iw1){
+            if (im1 < ic1){
+                m = im1;
+            }
+        }if (ic1 < iw1){
+            if (ic1 < im1){
+                m = ic1;
+            }
+        }
+
+       System.out.println("Write how many cups of coffee you will need: ");
+       int n = in.nextInt();
+       if (n < m){
+           System.out.println("Yes, I can make that amount of coffee");
+       } if (n > m){
+           System.out.println("No, I can make only" + m +"cup(s) of coffee");
+        }
+
+
+
+
+    }
+}
