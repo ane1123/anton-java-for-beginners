@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+
+public class TicTacToe {
+
+
+    public static void main(String[] args) {
+
+        Scanner in = new Scanner(System.in);
+
+       int milk = 50;
+       int coffee = 15;
+       int watter = 200;
+       System.out.println("сколько порций коффе:");
+       int i = in.nextInt();
+       System.out.println("For " + i + " cups of coffee you will need:");
+       System.out.println(watter * i + " ml of water");
+       System.out.println(milk * i + " ml of milk");
+       System.out.println(coffee * i + " g of coffee beans");
+
+
+    }
+}
