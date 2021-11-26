@@ -10,7 +10,7 @@ public class tictac3 {
         String cells = in.nextLine();
         System.out.print("-----------");
         for(int i = 0; i < 3; i++){
-            System.out.println("| ");
+            System.out.print("| ");
             for (; j < k; j++){
                 System.out.print(cells.charAt(j) + "");
             }
