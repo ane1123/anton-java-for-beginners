@@ -10,8 +10,8 @@ public class task4 {
         Scanner in = new Scanner(System.in);
         Random random = new Random();
 
-        StringBuilder secNum = new StringBuilder();
-        StringBuilder guessNum = new StringBuilder();
+        StringBuilder Num = new StringBuilder();
+        StringBuilder userNum = new StringBuilder();
 
         System.out.println("введите длину ");
         int length = in.nextInt();
@@ -21,37 +21,37 @@ public class task4 {
             return;
         }
 
-        int turn = 1;
+        int a = 1;
 
         int cow;
         int bull = 0;
 
         for (int i = 0; i < length; i++) {
             if(i == 0){
-                secNum.append(random.nextInt(9) + 1);
+                Num.append(random.nextInt(9) + 1);
                 continue;
             }
             String ranDig = Integer.toString(random.nextInt(9) + 1);
-            if(secNum.indexOf(ranDig) == -1){
-                secNum.append(ranDig);
+            if(Num.indexOf(ranDig) == -1){
+                Num.append(ranDig);
             }
             else{
                 i--;
             }
         }
 
-        System.out.println("Okay, let's start a game!");
 
-        while(bull != secNum.length()){
+
+        while(bull != Num.length()){
             bull = 0;
             cow = 0;
 
-            System.out.println("Turn " + turn + ":");
-            guessNum.append(in.nextLine());
+            System.out.println("попытка " + a + ":");
+            userNum.append(in.nextLine());
 
-            for (int i = 0; i < secNum.length(); i++) {
-                for (int j = 0; j < guessNum.length(); j++) {
-                    if(secNum.charAt(i) == guessNum.charAt(j)){
+            for (int i = 0; i < Num.length(); i++) {
+                for (int j = 0; j < userNum.length(); j++) {
+                    if(Num.charAt(i) == userNum.charAt(j)){
                         cow = i != j? cow + 1 : cow;
                         bull = i == j? bull + 1 : bull;
                     }
@@ -59,7 +59,7 @@ public class task4 {
             }
 
             if(bull != 0 && cow != 0){
-                System.out.println("быков " + bull + "  and коров" + cow);
+                System.out.println("быков " + bull + "  and коров " + cow);
             }
             else if(bull != 0){
                 System.out.println("быков " + bull );
@@ -69,11 +69,11 @@ public class task4 {
             }
             else {
                 System.out.println("\n" +
-                        "Оценка: Нет.");
+                       " введите нормальный ответ");
             }
 
-            turn++;
-            guessNum.setLength(0);
+            a++;
+            userNum.setLength(0);
         }
 
         System.out.println("\n" +
