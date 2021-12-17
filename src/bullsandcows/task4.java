@@ -2,111 +2,81 @@ package bullsandcows;
 
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.Random;
 
 public class task4 {
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);
-        int i = 0;
-        int e = 0;
-        int x = 0;
-        int c = 0;
-        int d = 0;
-        int f = 0;
-        int r = 0;
-        int g = 0;
-        int v = 0;
-        int n = 0;
+        Random random = new Random();
 
-        int z = (int) ((Math.random() * ((9999 - 1000))) + 1000);
-        System.out.println("код создан" + z);
-        String b = String.valueOf(z);
-        String[] parts = b.split("");
+        StringBuilder secNum = new StringBuilder();
+        StringBuilder guessNum = new StringBuilder();
 
-        while (true) {
+        System.out.println("введите длину ");
+        int length = in.nextInt();
 
+        if(length > 9){
+            System.out.println("Max 9.");
+            return;
+        }
 
-            System.out.println("введите число");
-            int w = in.nextInt();
-            String s = String.valueOf(w);
-            String[] parts1 = s.split("");
-            if (Objects.equals(parts[0], parts1[0])) {
-                i = 1;
+        int turn = 1;
 
-            }
-            if (Objects.equals(parts[0], parts1[1])) {
-                e = 1;
-            }
-            if (Objects.equals(parts[0], parts1[2])) {
-                e = 1;
-            }
-            if (Objects.equals(parts[0], parts1[3])) {
-                e = 1;
+        int cow;
+        int bull = 0;
 
-
+        for (int i = 0; i < length; i++) {
+            if(i == 0){
+                secNum.append(random.nextInt(9) + 1);
+                continue;
             }
-            if (Objects.equals(parts[1], parts1[1])) {
-                x = 1;
-
+            String ranDig = Integer.toString(random.nextInt(9) + 1);
+            if(secNum.indexOf(ranDig) == -1){
+                secNum.append(ranDig);
             }
-            if (Objects.equals(parts[1], parts1[0])) {
-                c = 1;
-            }
-            if (Objects.equals(parts[1], parts1[2])) {
-                c = 1;
-            }
-            if (Objects.equals(parts[0], parts1[3])) {
-                c = 1;
-            }
-
-            if (Objects.equals(parts[2], parts1[2])) {
-                d = 1;
-
-            }
-            if (Objects.equals(parts[2], parts1[1])) {
-                f = 1;
-            }
-            if (Objects.equals(parts[2], parts1[0])) {
-                f = 1;
-            }
-            if (Objects.equals(parts[2], parts1[3])) {
-                f = 1;
-            }
-
-
-            if (Objects.equals(parts[3], parts1[3])) {
-                r = 1;
-
-            }
-            if (Objects.equals(parts[3], parts1[0])) {
-                g = 1;
-            }
-            if (Objects.equals(parts[3], parts1[1])) {
-                g = 1;
-            }
-            if (Objects.equals(parts[3], parts1[2])) {
-                g = 1;
-            }
-
-            v = r + d + x + i;
-            n = g + f + c + e;
-
-
-            System.out.println("счет быков: " + v + "  коров: " + n);
-            if (v == 4) {
-                System.out.println("win");
-                System.exit(r);
+            else{
+                i--;
             }
         }
+
+        System.out.println("Okay, let's start a game!");
+
+        while(bull != secNum.length()){
+            bull = 0;
+            cow = 0;
+
+            System.out.println("Turn " + turn + ":");
+            guessNum.append(in.nextLine());
+
+            for (int i = 0; i < secNum.length(); i++) {
+                for (int j = 0; j < guessNum.length(); j++) {
+                    if(secNum.charAt(i) == guessNum.charAt(j)){
+                        cow = i != j? cow + 1 : cow;
+                        bull = i == j? bull + 1 : bull;
+                    }
+                }
+            }
+
+            if(bull != 0 && cow != 0){
+                System.out.println("быков " + bull + "  and коров" + cow);
+            }
+            else if(bull != 0){
+                System.out.println("быков " + bull );
+            }
+            else if(cow != 0){
+                System.out.println("коров " + cow);
+            }
+            else {
+                System.out.println("\n" +
+                        "Оценка: Нет.");
+            }
+
+            turn++;
+            guessNum.setLength(0);
+        }
+
+        System.out.println("\n" +
+                "Поздравляю! Вы угадали секретный код.");
     }
 }
-
-
-
-
-
-
-
-
-
-
